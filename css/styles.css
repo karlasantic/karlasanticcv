@@ -15,15 +15,30 @@ body {
 
 .resume-header {
     background-color: #7ea8cf;
+	border-radius: 15px 50px 30px 5px;
+	background: #7ea8cf;
+	padding: 20px;
+	width: 200px;
+	height: 150px;
 }
+
 
 .resume-main {
 	background-color: #f1eee8;
-}
+	border-radius: 15px 50px 30px 5px;
+	background: #f1eee8;
+	padding: 20px;
+	width: 200px;
+	height: 150px;}
 
 .resume-aside {
 	
 	background-color: #abaea6c4;
+	border-radius: 15px 50px 30px 5px;
+	background: #abaea6c4;
+	padding: 20px;
+	width: 200px;
+	height: 150px;
 }
 
 /* Styles for lists in the document */
@@ -50,10 +65,3 @@ body {
 	height: 1em;
 	flex-basis: 1.4em;
 }
-#rcorners1 {
-	border-radius: 15px 50px 30px 5px;
-	background: #73ad211b;
-	padding: 20px;
-	width: 200px;
-	height: 150px;
-  }
