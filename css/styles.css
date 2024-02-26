@@ -28,8 +28,8 @@ body {
 	border-radius: 15px 50px 30px 5px;
 	background: #f1eee8;
 	padding: 20px;
-	width: 1em;
-	height: 150px;}
+	width: -0.75em;
+	height: 1000px;}
 
 .resume-aside {
 	
@@ -37,8 +37,8 @@ body {
 	border-radius: 15px 50px 30px 5px;
 	background: #abaea6c4;
 	padding: 20px;
-	width: 1em;
-	height: 150px;
+	width: -1em;
+	height: 1000px;
 }
 
 /* Styles for lists in the document */
