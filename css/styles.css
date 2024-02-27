@@ -7,25 +7,25 @@
 
 body {
 	font-family: Lato, "Open Sans", Roboto, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #0c0c5d;
 
+	
 }
 
 /* Styles for custom classes in the document. (There are more, try to find them out!) */
 
 .resume-header {
     background-color: #7ea8cf;
-	border-radius: 15px 50px 30px 5px;
-	background: #7ea8cf;
-	padding: 20px;
+	border-radius: 15px 15px 0px 0px;
+
+	padding: 25px;
 	width: -1em;
-	height: 300px;
+	height: 200px;
 }
 
 
 .resume-main {
 	background-color: #f1eee8;
-	border-radius: 15px 50px 30px 5px;
+	border-radius: 0px 5px 0px 15px;
 	background: #f1eee8;
 	padding: 20px;
 	width: -0.75em;
@@ -34,7 +34,7 @@ body {
 .resume-aside {
 	
 	background-color: #abaea6c4;
-	border-radius: 15px 50px 30px 5px;
+	border-radius: 0px 0px 15px 0px;
 	background: #abaea6c4;
 	padding: 20px;
 	width: -1em;
@@ -52,7 +52,7 @@ body {
 }
 
 .biography-details li::before {
-	color: #001465;
+	color: #001965;
 }
 
 .biography-details li, .skill-list li {
