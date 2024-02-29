@@ -43,7 +43,7 @@ body {
 	flex-direction: column;
 	font-family: 'open sans, Helvetica, sans-serif';
   }
-  
+
   .hero-content h1 {
 	font-size: 40px;
 	font-weight: 700;
@@ -52,51 +52,58 @@ body {
 	color: #fff;
   }
 
-  .animated-text{
+  .animated-text {
 	font-size: 34px;
 	font-weight: 600;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 	color: #fff;
-
+	display: inline-block; /* Added for proper animation */
   }
+
+  .animated-text-wrapper {
+	overflow: hidden;
+	position: relative;
+  }
+
   .animated-text span {
-	position: relative
+	position: relative;
   }
 
-  .animated-text span::before {
-  content: 'Karla Šantić';
-  color: #fff;
-  animation: words 20s infinite;
+  .animated-text span::before,
+  .animated-text span::after {
+	content: 'Karla Šantić';
+	color: #fff;
+	animation: words 20s infinite;
   }
 
- .animated-text span::after {
-  content: 'Karla Šantić';
-  position: absolute; 
-  width: 10px;
-  height: 100%;
-  background-color: aqua;
-  color: #fff;
- right: -8px;
- border-left: 2px solid #001965;
-  animation: cursor .8s infinite alternate;
-  }
-  
-  @keyframes cursor {
-  to {
+  .animated-text span::after {
+	content: 'Karla Šantić';
+	position: absolute;
+	width: 10px;
+	height: 100%;
+	background-color: aqua;
+	color: #fff;
+	right: -8px;
 	border-left: 2px solid #001965;
-  opacity: 0;
+	animation: cursor .8s infinite alternate;
   }
+
+  @keyframes cursor {
+	to {
+	  border-left: 2px solid #001965;
+	  opacity: 0;
+	}
   }
+
   @keyframes words {
-  0%, 50% {
-	content:'Karla';
+	0%, 50% {
+	  content: 'Karla';
+	}
+	51%, 100% {
+	  content: 'Šantić';
+	}
   }
-  51%, 100% {
-	content: 'Šantić';	
-  }
-  }
-  
 
   
   
