@@ -6,7 +6,7 @@
 /* Styles for the body */
 
 body {
-	font-family: Lato, "Open Sans", Roboto, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'open sans, Helvetica, sans-serif';
 
 	
 }
@@ -27,10 +27,12 @@ body {
   /*--------------------------------------------------------------
   # Hero
   --------------------------------------------------------------*/
+  
   #hero {
 	background: url("../images/yo2.jpg") repeat scroll center center/cover;
 	height: 100vh;
-	width: 100%;
+	width: 101.2%;
+	flex:1;
   }
   
   #hero .hero-content {
@@ -43,7 +45,7 @@ body {
 	flex-direction: column;
 	font-family: 'open sans, Helvetica, sans-serif';
   }
-
+  
   .hero-content h1 {
 	font-size: 40px;
 	font-weight: 700;
@@ -58,50 +60,22 @@ body {
 	margin-bottom: 10px;
 	text-transform: uppercase;
 	color: #fff;
-	display: inline-block; /* Added for proper animation */
+	overflow: hidden; /* Added to hide the overflow while typing effect */
   }
-
-  .animated-text-wrapper {
-	overflow: hidden;
-	position: relative;
-  }
-
-  .animated-text span {
-	position: relative;
-  }
-
-  .animated-text span::before,
-  .animated-text span::after {
+  
+  .animated-text span::before {
 	content: 'Karla Šantić';
 	color: #fff;
-	animation: words 20s infinite;
+	width: fit-content; /* Added to fit the width of the content */
+	animation: typing 4s steps(40, end); /* Changed to typing animation with steps */
   }
-
-  .animated-text span::after {
-	content: 'Karla Šantić';
-	position: absolute;
-	width: 10px;
-	height: 100%;
-	background-color: aqua;
-	color: #fff;
-	right: -8px;
-	border-left: 2px solid #001965;
-	animation: cursor .8s infinite alternate;
-  }
-
-  @keyframes cursor {
+  
+  @keyframes typing {
+	from {
+	  width: 0;
+	}
 	to {
-	  border-left: 2px solid #001965;
-	  opacity: 0;
-	}
-  }
-
-  @keyframes words {
-	0%, 50% {
-	  content: 'Karla';
-	}
-	51%, 100% {
-	  content: 'Šantić';
+	  width: 100%;
 	}
   }
 
@@ -131,26 +105,38 @@ body {
 
 .resume-main {
 	background-color: #f1eee8;
-	border-radius: 0px 5px 0px 15px;
+	border-radius: 15px 0px 0px 15px;
 	background: #f1eee8;
 	padding: 20px;
 	width: -0.75em;
-	height: 1000px;}
+	height: 1000px;
+flex:0.8}
+.resume main h1 {
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+}
+.resume main h2 {
+	text-align: center;
+	font-family: 'Helvetica', sans-serif;
+	font-weight: 400;
+}
 
 .resume-aside {
 	
-	background-color: #abaea6c4;
+	background-color: #68784cc4;
 	border-radius: 0px 0px 15px 0px;
-	background: #abaea6c4;
+	background: #515a42c4;
 	padding: 20px;
 	width: -1em;
 	height: 1000px;
+	flex:0.2
 }
 
 /* Styles for lists in the document */
 
 .biography-details li::before, .skill-list li::before {
-	content: ">";
+	content: "•";
 	font-weight: 800;
 	display: inline-block;
 	width: 1em;
