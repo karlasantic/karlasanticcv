@@ -11,15 +11,16 @@ body {
 /* Styles for custom classes in the document. (There are more, try to find them out!) */
 
 .scrolling-element {
-	height: 1000px; /* Example height for scrolling */
-	overflow: auto; /* Enable scrolling */
+	height:1000px; 
+	width: 100%;/* Example height for scrolling */
+	overflow:auto ; /* Enable scrolling */
   }
 #header {
     transition: all 0.5s;
     z-index: 997;
     padding: 15px 0;
     background-color: #aa2121;
-    top: -100%;
+    top: 100%;
     box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.08);
 }
 
@@ -30,7 +31,7 @@ body {
 #hero {
     background: url("../images/yo2.jpg") repeat scroll center center/cover;
     height: 100vh;
-    width: 101.7%;
+    width: 101.42%;
     flex: 1;
 	color:#fff
 }
@@ -61,15 +62,13 @@ body {
     margin-bottom: 10px;
     text-transform: uppercase;
     color: #fff;
-    overflow: hidden; /* Added to hide the overflow while typing effect */
-}
+    overflow: hidden; 
 
 .animated-text span::before {
     content: 'Karla Šantić';
     color: #fff;
-    width: fit-content; /* Added to fit the width of the content */
-    animation: typing 4s steps(40, end); /* Changed to typing animation with steps */
-}
+    width: fit-content;
+    animation: typing 3s steps(40, end);
 
 @keyframes typing {
     from {
@@ -154,4 +153,5 @@ a {
   a:visited {
 	color: #e8c500; /* Purple color for visited links */
   }
+  
   
