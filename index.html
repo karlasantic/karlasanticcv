@@ -19,40 +19,45 @@
   <!-- End of the head -->
 
   <!-- Start of the body, which contains everything visible on the page -->
-  <body class="d-flex flex-column h-100 justify-content-between">
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <!--
-      We use a Bootstrap container to align contents.
-      The "container" class can be replaced by "container-fluid" to make a full width page.
-      The "my-sm-4" class adds a margin (m) vertical (y) at sizes small (-sm-) and above, of 4 x 6 pixels
-      The "resume-container" class doesn't come from Bootstrap, you can use it for your own styles
-    -->
-    <div class="container shadow-lg my-sm-4 resume-container">
+      <a href="index.html" class="logo"></a>
+      <!-- Folio\index.html -->
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="#work">Work</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-      <!--
-        <header> is a semantic element: it works exactly like <div>, but it gives information about the role of the code below.
-        The "row" class is used for the Bootstrap grid.
-      -->
-      <header class="row resume-header justify-content-center">
-        <!--
-          A container to wrap around the portrait and align it. We use Bootstrap grid columns.
-          This constrains the portrait to columns of decreasing sizes
-        -->
-        <div class="portrait-container col-5 col-sm-4 col-md-3 col-lg-2">
-          <!--
-            "w-100" makes sure the image takes the full width of the column it's in
-            "rounded-circle" cuts a circle around the image
-          -->
-          <img class="w-100 rounded-circle my-3" src="images/yo.jpg" alt="Portrait of Firstname Lastname" width="160">
-        </div>
-        <!--
-          A container to wrap around your name and tagline. Full-width at small size, then columns of increasing size.
-        -->
-        <div class="col-12 col-sm-8 col-md-9 col-lg-10 my-3 header-content">
-          <h1 class="fw-bolder">Karla Šantić</h1>
-          <h5 class="fst-italic tagline">Creative media professional</h5>
-        </div>
-      </header>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <div id="hero" class="home">
+
+    <div class="container">
+      <div class="hero-content">
+        <h1>I'm Karla Šantić <span class="typed" data-typed-items="Karla Šantić"></span></h1>
+
+      
+
+    
+      <p>Creative business Professional</p>
+
+        <ul class="list-unstyled list-social">
+          <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div><!-- End Hero --><body fluid="d-flex flex-column h-1000 justify-content-between">
+
+  
 
       <!--
         Another row in the Bootstrap grid, for the rest of the résumé.
@@ -64,6 +69,7 @@
         <!--
           <main> is another semantic element. It will contain biographical info (professional experience and education).
         -->
+        
         <main class="col-md-7 col-lg-8 col-xl-9 resume-main">
 
           <!--
@@ -84,7 +90,7 @@
                   <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/projector.svg" alt="Company logo" width="80">
                 </div>
                 <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                  <h4>Sales assosiate</h4>
+                  <h4>Sales accosiate</h4>
                   <h5>April&ndash;July 2022</h5>
                   <!-- Use the list below to talk about your achievements -->
                   <ul class="biography-details list-unstyled">
@@ -271,6 +277,39 @@
         </aside>
       </div>
     </div>
+    <div id="portfolio" class="paddsection">
+
+      <div class="container">
+        <div class="section-title text-center">
+          <h2>My Portfolio</h2>
+        </div>
+      </div>
+
+      <div class="container">
+
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>App 1</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Web 3</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
 
     <!-- And now, a footer! -->
     <footer class="bg-dark mt-sm-5 py-4 text-light">
