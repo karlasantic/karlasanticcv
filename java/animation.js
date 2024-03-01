@@ -11,3 +11,5 @@ var options = {
   }
   
   var typed = new Typed('#typingAnimation', options);
+
+  
