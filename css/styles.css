@@ -26,7 +26,7 @@ body {
 
 
 #karla {
-    background: url("../images/yo2.jpg") repeat scroll center center/cover;
+    background: url("../images/yo3.jpg") repeat scroll center center/cover;
     height: 100vh;
     width: 101.42%;
     flex: 1;
@@ -36,7 +36,7 @@ body {
 #karla .karla-content {
     height: 100vh;
     padding: 0;
-    text-align: left;
+    text-align: right;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -101,7 +101,7 @@ body {
 .resume-main {
     background-color: #f1eee8;
     border-radius: 15px 0px 0px 15px;
-    background: #f1eee8;
+    background: #ecc881d5;
     padding: 20px;
     width: 75%;
     height: 1000px;
@@ -114,7 +114,7 @@ body {
 
 .resume-aside {
     background-color: #68784cc4;
-	background: #515a42c4;
+	background: #68a3d0;
     padding: 20px;
     width: 25%;
     height: 1000px;
