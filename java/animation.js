@@ -1,15 +1,13 @@
-// Assuming you are using the Typed.js library for the typing animation
 var options = {
     strings: ['Karla Šantić'],
-    typeSpeed: 50, // typing speed in milliseconds
-    loop: true // loop the animation infinitely
+    typeSpeed: 100
   }
   
   var typed = new Typed('.typed', options);
   var options = {
     strings: ['Karla Šantić'],
-    typeSpeed: 50, // typing speed in milliseconds
-    loop: true // loop the animation infinitely
+    typeSpeed: 80
+  
   }
   
   var typed = new Typed('#typingAnimation', options);
