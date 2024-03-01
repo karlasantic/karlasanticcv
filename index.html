@@ -15,26 +15,39 @@
 <body fluid="d-flex flex-column h-1000 justify-content-between">
 
     <header id="header" class="fixed-top">
+       
     </header>
-    <div class="scrolling-element">
+
         
     <div id="karla" class="home">
         <div class="container">
             <div class="karla-content">
               <h1>I'm <span class="animated-text" id="typingAnimation" data-typed-items="Karla Šantić"></span></h1>
+              <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+          <script>
+            var options = {
+                strings: ['Karla Šantić'],
+                typeSpeed: 95,
+                startDelay: 900,
+                untilcompleted: true 
+             };
+
+            var typed = new Typed('#typingAnimation', options);
+          </script>
               <h2>Creative business professional</h2>
                 <ul class="list-unstyled list-social">
                     <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
                 </ul>
                 <div id="social-media" class="div-block-8">
-                    <a href="https://www.instagram.com/kysondana/" class="social-links w-inline-block">
-                        <img src='images/icons/instagram.svg'  width="48" alt="" class="image-2"/>
-                    </a>
                     <a href="https://www.linkedin.com/in/karla-santic/" target="_blank" class="social-links w-inline-block">
-                        <img src='images/icons/linkedin.svg' width="42" alt="" class="image-2"/>
+                        <img src='images/icons/linkedin.svg' width="36" alt="" class="image-2"/>
                     </a>
-                    
-                   
+                    <a href="mailto:221443@buas.nl" class="social-links w-inline-block">
+                        <img  src="images/icons/envelope.svg" width="48"  height="45" alt="Email" class="image-2">
+                    </a>
+                    <a href="https://github.com/karlasantic/" class="social-links w-inline-block">
+                        <img  src="images/icons/github.svg" width="37" alt="GitHub" class="image-2">
+                    </a>
                     
                 </div>
             </div>
@@ -42,24 +55,13 @@
     </div>
 
     <div class="row resume-bottom">
-        <main class="col-md-7 col-lg-8 col-xl-9 resume-main">
-          <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-          <script>
-            var options = {
-              strings: ['Karla Šantić'],
-              typeSpeed: 90, // typing speed in milliseconds
-              untilcompleted: true // loop the animation infinitely
-            }
-        
-            var typed = new Typed('#typingAnimation', options);
-          </script>
-          
+        <main class="col-md-10 col-lg-8 col-xl-9 resume-main">
             <section class="my-3 biography-section">
                 <h2>Professional Experience</h2>
                 <ul class="biography-list list-unstyled">
                     <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/projector.svg" alt="Company logo" width="80">
+                        <div class="logo-container col-3 col-sm-2 col-md-2 col-lg-2">
+                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/projector.svg" alt="Company logo" width="70">
                         </div>
                         <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
                             <h4><b>Sales associate</b></h4>
@@ -67,13 +69,14 @@
                             <ul class="biography-details list-unstyled">
                                 <li>B2C communication</li>
                                 <li>Managing arrival shipments</li>
+                                <li>Operating cash register</li>
                             </ul>
                         </div>
                     </li>
 
                     <li class="biography-item row mb-2">
                         <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/reshot-icon-hotel-WZEX8SU7H9.svg" alt="Company logo" width="80">
+                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/reshot-icon-hotel-WZEX8SU7H9.svg" alt="Company logo" width="0">
                         </div>
                         <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
                             <h4><b>Hotel receptionist</b></h4>
@@ -126,33 +129,6 @@
 
         <aside class="col-md-5 col-lg-4 col-xl-3 resume-aside">
             <section class="my-3 aside-section">
-                <h2>Contact</h2>
-                <ul class="contact-list list-unstyled">
-                    <li class="contact-item">
-                        <a class="d-flex align-items-center" href="mailto:email@buas.nl" target="_blank">
-                            <img class="contact-icon" src="images/icons/envelope.svg" alt="Email">
-                            221443@buas.nl
-                        </a>
-                    </li>
-                    <li class="contact-item">
-                        <a class="d-flex align-items-center" href="https://www.linkedin.com/in/karla-santic/" target="_blank">
-                            <img class="contact-icon" src="images/icons/linkedin.svg" alt="LinkedIn">
-                            LinkedIn
-                        </a>
-                    </li>
-                    <li class="contact-item">
-                        <a class="d-flex align-items-center" href="https://github.com/karlasantic" target="_blank">
-                            <img class="contact-icon" src="images/icons/github.svg" alt="GitHub">
-                            GitHub
-                        </a>
-                    </li>
-                    <li class="contact-item">
-                        <a class="d-flex align-items-center" href="https://www.tiktok.com/@bredauniversityas" target="_blank">
-                            <img class="contact-icon" src="images/icons/tiktok.svg" alt="Mobile Phone">
-                            TikTok @bredauniversityas
-                        </a>
-                    </li>
-                </ul>
             </section>
 
             <section class="my-3 aside-section">
@@ -208,7 +184,7 @@
         </aside>
     </div>
 
-    <footer class="bg-dark mt-sm-5 py-4 text-light">
+    <footer class="bg-light mt-sm-5 py-4 text-light" id="footer">
         <p class="container text-end">
             Created as part of the <a href="https://www.buas.nl/en/programmes/creative-business" target="_blank">Bachelor of Creative Business at Breda University of Applied Sciences.</a>
         </p>
