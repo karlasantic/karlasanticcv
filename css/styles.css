@@ -19,7 +19,6 @@ body {
     transition: all 0.5s;
     z-index: 997;
     padding: 15px 0;
-    background-color: #aa2121;
     top: 100%;
     box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.08);
 }
@@ -28,9 +27,9 @@ body {
 #karla {
     background: url("../images/yo3.jpg") repeat scroll center center/cover;
     height: 100vh;
-    width: 101.42%;
+    width: 101.5%;
     flex: 1;
-	color:#fff
+	color:#000
 }
 
 #karla .karla-content {
@@ -50,7 +49,7 @@ body {
     font-weight: 700;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #fff;
+    color: #000;
 }
 
 .animated-text {
@@ -58,13 +57,13 @@ body {
     font-weight: 600;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #fff;
+    color: #000;
     overflow: hidden; 
 }
 
 .animated-text span::before {
     content: 'Karla Šantić';
-    color: #fff;
+    color: #000;
     width: fit-content; 
     animation: typing 5s steps(40, end); 
 }
@@ -76,16 +75,6 @@ body {
     to {
         width: 100%;
     }
-}
-
-.karla-content p {
-    font-size: 13px;
-    letter-spacing: 3px;
-    margin-top: 0;
-    margin-bottom: 30px;
-    text-transform: capitalize;
-    color: #ccb5b5;
-    font-weight: 500;
 }
 
 .karla-content .list-social li {
@@ -133,6 +122,7 @@ body {
 
 .biography-details li::before {
     color: #001965;
+
 }
 
 .biography-details li,
