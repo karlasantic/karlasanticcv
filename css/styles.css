@@ -10,11 +10,6 @@ body {
 
 /* Styles for custom classes in the document. (There are more, try to find them out!) */
 
-.scrolling-element {
-	height:1000px; 
-	width: 100%;/* Example height for scrolling */
-	overflow:auto ; /* Enable scrolling */
-  }
 #header {
     transition: all 0.5s;
     z-index: 997;
@@ -27,7 +22,7 @@ body {
 #karla {
     background: url("../images/yo3.jpg") repeat scroll center center/cover;
     height: 100vh;
-    width: 101.5%;
+    width: 100%;
     flex: 1;
 	color:#000
 }
@@ -57,7 +52,7 @@ body {
     font-weight: 600;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #000;
+    color: #37459d;
     overflow: hidden; 
 }
 
@@ -88,9 +83,9 @@ body {
 }
 
 .resume-main {
-    background-color: #f1eee8;
+    background-color: #8bb6e7d5;
     border-radius: 15px 0px 0px 15px;
-    background: #ecc881d5;
+    background: #8bb6e7d5;
     padding: 20px;
     width: 75%;
     height: 1000px;
@@ -102,8 +97,8 @@ body {
 }
 
 .resume-aside {
-    background-color: #68784cc4;
-	background: #68a3d0;
+    background-color: #ede4d1d5;
+	background: #ede4d1d5;
     padding: 20px;
     width: 25%;
     height: 1000px;
