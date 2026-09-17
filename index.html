@@ -1,506 +1,1004 @@
 <!DOCTYPE html>
-
-<html class="h-100" lang="en">
+<html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Karla Šantić's resume</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karla Šantić</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #F4F0E8;
+      --bg2:     #EDE9DF;
+      --ink:     #1A1A1A;
+      --ink-mid: #777068;
+      --ink-lt:  rgba(26,26,26,0.12);
+      --red:     #D93025;
+      --red-t:   rgba(217,48,37,0.13);
+      --red-tm:  rgba(217,48,37,0.22);
+      --yellow:  #E8B800;
+      --yel-t:   rgba(232,184,0,0.18);
+      --blue:    #1A3A8F;
+      --blu-t:   rgba(26,58,143,0.13);
+      --blu-tm:  rgba(26,58,143,0.22);
+      --rule:    rgba(26,26,26,0.18);
+      --glass:   rgba(244,240,232,0.55);
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 54px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      border-bottom: 1.5px solid var(--rule);
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      border-right: 1.5px solid var(--rule);
+    }
+    .nav-logo em { color: var(--red); font-style: normal; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: stretch;
+    }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid var(--rule);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); background: rgba(26,26,26,0.05); }
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      border-left: 1.5px solid var(--rule);
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: var(--red); }
+
+    /* ── HERO ──────────────────────────── */
+    #hero {
+      padding-top: 54px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* big geometric translucent shapes */
+    .hero-circle {
+      position: absolute;
+      top: -120px; right: -100px;
+      width: 480px; height: 480px;
+      background: var(--red-t);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-rect {
+      position: absolute;
+      bottom: 60px; left: 30%;
+      width: 260px; height: 260px;
+      background: var(--yel-t);
+      pointer-events: none;
+    }
+    .hero-tri-wrap {
+      position: absolute;
+      bottom: -40px; left: 80px;
+      width: 0; height: 0;
+      border-left: 180px solid transparent;
+      border-right: 180px solid transparent;
+      border-bottom: 310px solid var(--blu-t);
+      pointer-events: none;
+    }
+
+    .hero-name-block {
+      grid-column: 1 / 3;
+      padding: 72px 64px 52px;
+      position: relative;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-bottom: 20px;
+    }
+    .hero-name {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(72px, 13vw, 190px);
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-name .stroke {
+      -webkit-text-stroke: 2px var(--ink);
+      color: transparent;
+    }
+
+    .hero-left {
+      padding: 48px 64px;
+      border-right: 1.5px solid var(--rule);
+      position: relative;
+      background: var(--red-t);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-tagline {
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.65;
+      max-width: 36ch;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 36px;
+    }
+    .hero-tag {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1.5px solid var(--rule);
+      padding: 6px 14px;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .hero-right {
+      padding: 48px 64px;
+      background: var(--blu-t);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: blink 1.8s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.25; }
+    }
+    .hero-location {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      margin-top: 10px;
+      letter-spacing: 0.03em;
+    }
+    .hero-scroll-hint {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-scroll-hint::before {
+      content: '';
+      display: block;
+      width: 36px; height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── SECTION BAR ───────────────────── */
+    .section-bar {
+      padding: 10px 64px;
+      border-top: 1.5px solid var(--rule);
+      border-bottom: 1.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .section-bar-label {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .section-bar-line { flex: 1; height: 1px; background: var(--rule); }
+    .section-bar-num { font-size: 11px; letter-spacing: 0.07em; color: var(--ink-mid); }
+
+    /* ── SECTION TITLE ─────────────────── */
+    .section-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(48px, 7vw, 104px);
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    /* ── ABOUT ─────────────────────────── */
+    #about {
+      display: grid;
+      grid-template-columns: 5fr 3fr;
+    }
+    .about-main {
+      padding: 72px 64px;
+      border-right: 1.5px solid var(--rule);
+    }
+    .about-main .section-title { margin-bottom: 48px; }
+    .about-text {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #4a4640;
+      margin-bottom: 18px;
+      max-width: 58ch;
+    }
+    .about-text strong { color: var(--ink); font-weight: 500; }
+    .about-cta {
+      display: inline-block;
+      margin-top: 36px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 14px 28px;
+      border: 1.5px solid var(--ink);
+      transition: background 0.15s, color 0.15s;
+    }
+    .about-cta:hover { background: var(--red); border-color: var(--red); }
+
+    .about-sidebar {
+      padding: 72px 48px;
+      background: var(--yel-t);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+    }
+    .about-stat {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .about-stat:first-child { padding-top: 0; }
+    .about-stat:last-child { border-bottom: none; }
+    .stat-num {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 52px;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+    .about-quote {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      font-style: italic;
+    }
+
+    /* ── SKILLS ────────────────────────── */
+    .skills-header { padding: 64px 64px 48px; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1.5px solid var(--rule);
+    }
+    .skill-card {
+      padding: 40px 40px;
+      border-right: 1.5px solid var(--rule);
+      border-bottom: 1.5px solid var(--rule);
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card:nth-child(3n) { border-right: none; }
+    .skill-card:nth-last-child(-n+3) { border-bottom: none; }
+    .skill-card:hover {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .skill-color-swatch {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      opacity: 0.75;
+    }
+    .skill-card:nth-child(3n+1) .skill-color-swatch { background: var(--red); }
+    .skill-card:nth-child(3n+2) .skill-color-swatch { background: var(--blue); }
+    .skill-card:nth-child(3n)   .skill-color-swatch { background: var(--yellow); }
+    .skill-name {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .skill-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #5a5650;
+    }
+
+    /* ── WORK ──────────────────────────── */
+    .work-header { padding: 64px 64px 48px; }
+    .projects-list { border-top: 1.5px solid var(--rule); }
+    .project-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto auto;
+      align-items: center;
+      border-bottom: 1.5px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .project-item:hover { background: var(--red-t); }
+    .project-item:last-child { border-bottom: none; }
+    .project-num-cell {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--ink-mid);
+      padding: 28px 0 28px 64px;
+      border-right: 1.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+    }
+    .project-info { padding: 28px 36px; }
+    .project-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 23px;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .project-meta {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--ink-mid);
+      text-transform: uppercase;
+    }
+    .project-tag-cell {
+      padding: 28px 28px;
+      border-left: 1.5px solid var(--rule);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      white-space: nowrap;
+    }
+    .project-arrow-cell {
+      padding: 28px 40px 28px 16px;
+      font-size: 18px;
+      color: var(--ink);
+      transition: transform 0.2s;
+    }
+    .project-item:hover .project-arrow-cell { transform: translateX(5px); }
+
+    /* ── EXPERIENCE ────────────────────── */
+    .experience-header { padding: 64px 64px 48px; }
+    .exp-list { border-top: 1.5px solid var(--rule); }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-sidebar {
+      padding: 40px 36px;
+      border-right: 1.5px solid var(--rule);
+      background: var(--blu-t);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .exp-role {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .exp-company {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-bottom: 18px;
+    }
+    .exp-type-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      margin-bottom: 8px;
+      border: 1.5px solid var(--rule);
+      background: var(--glass);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .exp-type-badge.internship { border-color: var(--yellow); color: var(--ink); }
+    .exp-type-badge.parttime   { border-color: var(--red);    color: var(--red); }
+    .exp-date {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--ink-mid);
+      letter-spacing: 0.04em;
+    }
+    .exp-body { padding: 40px 56px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .exp-bullets li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #4a4640;
+      padding-left: 20px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 11px;
+      width: 8px; height: 1.5px;
+      background: var(--ink);
+    }
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+    .exp-tag {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      padding: 5px 12px;
+      background: var(--glass);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* ── EDUCATION ─────────────────────── */
+    .education-header {
+      padding: 64px 64px 48px;
+      background: var(--red-t);
+      position: relative;
+      overflow: hidden;
+    }
+    /* decorative overlapping circle behind title */
+    .education-header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: var(--yel-t);
+      pointer-events: none;
+    }
+    .education-header .section-title { position: relative; z-index: 1; }
+
+    .edu-list { border-top: 1.5px solid var(--rule); }
+    .edu-item {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-cell {
+      padding: 40px 44px;
+      border-right: 1.5px solid var(--rule);
+      transition: background 0.2s;
+    }
+    .edu-cell:last-child { border-right: none; }
+    .edu-cell:hover { background: var(--yel-t); }
+    .edu-year {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-bottom: 10px;
+    }
+    .edu-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .edu-school {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+    .edu-desc { font-size: 13px; line-height: 1.75; color: #5a5650; }
+
+    /* ── CONTACT ───────────────────────── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 56vh;
+      position: relative;
+      overflow: hidden;
+    }
+    /* big overlapping translucent shapes for contact */
+    .contact-shape-a {
+      position: absolute;
+      top: -80px; left: -80px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: var(--red-tm);
+      pointer-events: none;
+    }
+    .contact-shape-b {
+      position: absolute;
+      bottom: -60px; right: 40%;
+      width: 260px; height: 260px;
+      background: var(--blu-tm);
+      pointer-events: none;
+    }
+    .contact-shape-c {
+      position: absolute;
+      bottom: -40px; right: -60px;
+      width: 0; height: 0;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-bottom: 340px solid var(--yel-t);
+      pointer-events: none;
+    }
+    .contact-left {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      border-right: 1.5px solid var(--rule);
+    }
+    .contact-pre {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-bottom: 16px;
+    }
+    .contact-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(52px, 8vw, 108px);
+      line-height: 0.9;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+    .contact-right {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1.5px solid var(--rule);
+      padding: 18px 24px;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .contact-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .contact-link.primary { background: var(--red); color: #fff; border-color: var(--red); }
+    .contact-link.primary:hover { background: var(--ink); border-color: var(--ink); }
+
+    /* ── FOOTER ────────────────────────── */
+    footer {
+      background: var(--bg2);
+      border-top: 1.5px solid var(--rule);
+      padding: 20px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .footer-logo em { color: var(--red); font-style: normal; }
+    .footer-copy { font-size: 11px; font-weight: 300; letter-spacing: 0.05em; color: var(--ink-mid); }
+
+    /* ── MOBILE ────────────────────────── */
+    @media (max-width: 860px) {
+      nav { grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-name-block { padding: 44px 24px 36px; }
+      .hero-left, .hero-right { padding: 36px 24px; border-right: none; border-top: 1.5px solid var(--rule); }
+      #about { grid-template-columns: 1fr; }
+      .about-main { padding: 48px 24px; border-right: none; border-bottom: 1.5px solid var(--rule); }
+      .about-sidebar { padding: 40px 24px; }
+      .skills-header, .work-header, .experience-header, .education-header { padding: 48px 24px 36px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-card { border-right: none !important; }
+      .project-num-cell { padding-left: 24px; }
+      .project-info { padding: 20px 16px; }
+      .project-tag-cell, .project-arrow-cell { display: none; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-sidebar { border-right: none; border-bottom: 1.5px solid var(--rule); }
+      .exp-body { padding: 32px 24px; }
+      .edu-item { grid-template-columns: 1fr; }
+      .edu-cell { border-right: none !important; padding: 28px 24px; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-left, .contact-right { padding: 56px 24px; border-right: none; border-top: 1.5px solid var(--rule); }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .section-bar { padding: 10px 24px; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <header id="header" class="fixed-top">  
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link  scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link  scrollto" href="#journal">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">KŠ<em>.</em></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's talk</a>
+  </nav>
 
-    </header>
-        
-        <div id="karla" class="home">
-            <div class="container">
-                <div class="karla-content">
-                <h1>I'm <span class="animated-text" id="typingAnimation" data-typed-items="Karla Šantić"></span></h1>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <script>
-                var options = {
-                    strings: ['Karla Šantić'],
-                    typeSpeed: 95,
-                    startDelay: 900,
-                    untilcompleted: true 
-                };
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-circle"></div>
+    <div class="hero-rect"></div>
+    <div class="hero-tri-wrap"></div>
 
-                var typed = new Typed('#typingAnimation', options);
-            </script>
-                <h2>Creative business professional</h2>
-                    <div id="social-media" class="div-block-8">
-                        <a href="https://www.linkedin.com/in/karla-santic/" target="_blank" class="social-links w-inline-block">
-                            <img src='images/icons/linkedin.svg' width="36" alt="" class="image-2">
-                        </a>
-                        <a href="mailto:221443@buas.nl" class="social-links w-inline-block">
-                            <img  src="images/icons/envelope.svg" width="48"  height="45" alt="Email" class="image-2">
-                        </a>
-                        <a href="https://github.com/karlasantic/" class="social-links w-inline-block">
-                            <img  src="images/icons/github.svg" width="37" alt="GitHub" class="image-2">
-                        </a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div id="about" class="paddsection">
-            <div class="container">
-              <div class="row justify-content-between">
-      
-                <div class="col-lg-4 ">
-                  <div class="div-img-bg">
-                    <div class="about-img">
-                      <img src="images/yo3.jpg"class="img-responsive" alt="me">
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="col-lg-7">
-                  <div class="about-descr">
-      
-                    <p class="p-heading">I'm a ux/ui designer based in the netherlands who loves clean, simple & unique design.</p>
-                    <p class="separator">I enjoy creating brand identities and developing products that serve a purpose.</p>
-      
-                  </div>
-      
-                </div>
-              </div>
-            </div>
-          </div><!-- End About Section -->
-      
-          <!-- ======= Portfolio Section ======= -->
-          <div id="portfolio" class="paddsection">
-      
-            <div class="container">
-              <div class="section-title text-center">
-                <h2>My Portfolio</h2>
-              </div>
-            </div>
-      
-            <div class="container">
-      
-              <div class="row">
-                <div class="col-lg-12 d-flex justify-content-center">
-                  <ul id="portfolio-flters">
-                    <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-card">Card</li>
-                    <li data-filter=".filter-web">Web</li>
-                  </ul>
-                </div>
-              </div>
-      
-              <div class="row portfolio-container">
-      
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                  <img src="images/yo3.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-info">
-                    <h4>App 1</h4>
-                    <p>App</p>
-                    <a href="images/yo3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-      
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                  <img src="images/yo3.jpg" class="img-fluid" alt="App">
-                  <div class="portfolio-info">
-                    <h4>Web 3</h4>
-                    <p>Web</p>
-                    <a href="images/yo3.jpg"  data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-      
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                  <img src="images/yo3.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-info">
-                    <h4>App 2</h4>
-                    <p>App</p>
-                    <a href="images/yo3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-      
-                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                  <img src="images/yo3.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-info">
-                    <h4>Card 2</h4>
-                    <p>Card</p>
-                    <a href="images/yo3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-      
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                  <img src="images/yo3.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-info">
-                    <h4>Web 2</h4>
-                    <p>Web</p>
-                    <a href="images/yo3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-      
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                  <img src="images/yo3.jpg" class="img-fluid" alt="">
-                  <div class="portfolio-info">
-                    <h4>App 3</h4>
-                    <p>App</p>
-                    <a href="images/yo3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-      
-              </div>
-      
-            </div>
-      
-          </div><!-- End Portfolio Section -->
-      
-          <!-- ======= Journal Section ======= -->
-          <div id="journal" class="text-left paddsection">
-      
-            <div class="container">
-              <div class="section-title text-center">
-                <h2>journal</h2>
-              </div>
-            </div>
-      
-            <div class="container">
-              <div class="journal-block">
-                <div class="row">
-      
-                  <div class="col-lg-4 col-md-6">
-                    <div class="journal-info">
-      
-                      <a href="blog-single.html"><img src="images/yo3.jpg" class="img-responsive" alt="img"></a>
-      
-                      <div class="journal-txt">
-      
-                        <h4><a href="blog-single.html">SO LETS MAKE THE MOST IS BEAUTIFUL</a></h4>
-                        <p class="separator">To an English person, it will seem like simplified English
-                        </p>
-      
-                      </div>
-      
-                    </div>
-                  </div>
-      
-                  <div class="col-lg-4 col-md-6">
-                    <div class="journal-info">
-      
-                      <a href="blog-single.html"><img src="images/yo3.jpg" class="img-responsive" alt="img"></a>
-      
-                      <div class="journal-txt">
-      
-                        <h4><a href="blog-single.html">WE'RE GONA MAKE DREAMS COMES</a></h4>
-                        <p class="separator">To an English person, it will seem like simplified English
-                        </p>
-      
-                      </div>
-      
-                    </div>
-                  </div>
-      
-                  <div class="col-lg-4 col-md-6">
-                    <div class="journal-info">
-      
-                      <a href="blog-single.html"><img src="images/yo3.jpg" class="img-responsive" alt="img"></a>
-      
-                      <div class="journal-txt">
-      
-                        <h4><a href="blog-single.html">NEW LIFE CIVILIZATIONS TO BOLDLY</a></h4>
-                        <p class="separator">To an English person, it will seem like simplified English
-                        </p>
-      
-                      </div>
-      
-                    </div>
-                  </div>
-      
-                </div>
-              </div>
-            </div>
-      
-          </div><!-- End Journal Section -->
-      
-          <!-- ======= Contact Section ======= -->
-          <div id="contact" class="paddsection">
-            <div class="container">
-              <div class="contact-block1">
-                <div class="row">
-      
-                  <div class="col-lg-6">
-                    <div class="contact-contact">
-      
-                      <h2 class="mb-30">GET IN TOUCH</h2>
-      
-                      <ul class="contact-details">
-                        <li><span>Breda, the Netherlands</span></li>
-                        <li><span>+31 617547972</span></li>
-                        <li><span>karla.santic@gmail.com</span></li>
-                      </ul>
-      
-                    </div>
-                  </div>
-      
-                  <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                      <div class="row gy-3">
-      
-                        <div class="col-lg-6">
-                          <div class="form-group contact-block1">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                          </div>
-                        </div>
-      
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                          </div>
-                        </div>
-      
-                        <div class="col-lg-12">
-                          <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                          </div>
-                        </div>
-      
-                        <div class="col-lg-12">
-                          <div class="form-group">
-                            <textarea class="form-control" name="message" placeholder="Message" required></textarea>
-                          </div>
-                        </div>
-      
-                        <div class="col-lg-12">
-                          <div class="loading">Loading</div>
-                          <div class="error-message"></div>
-                          <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-      
-                        <div class="mt-0">
-                          <input type="submit" class="btn btn-defeault btn-send" value="Send message">
-                        </div>
-      
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Contact Section -->
-      
-        </main><!-- End #main -->
-      
-        <!-- ======= Footer ======= -->
-        <div id="footer" class="text-center">
-          <div class="container">
-            <div class="socials-media text-center">
-      
-              <ul class="list-unstyled">
-                <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-                <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-                <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-              </ul>
-      
-            </div>
-      
-            <p>&copy; Copyrights Folio. All rights reserved.</p>
-      
-            <div class="credits">
-              <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Folio
-            -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-      
-          </div>
-        </div><!-- End Footer -->
-      
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-      
-        <!-- Vendor JS Files -->
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="assets/vendor/typed.js/typed.umd.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
-      
-        <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
-      
-      </body>
-
-    <div class="row resume-bottom">
-        <main class="col-md-10 col-lg-8 col-xl-9 resume-main">
-            <section class="my-3 biography-section">
-                <h2>Professional Experience</h2>
-                <ul class="biography-list list-unstyled">
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-2 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/newyorker.svg" alt="Company logo" width="70">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>Sales associate</b></h4>
-                            <h5><i>April&ndash;July 2022</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>B2C communication</li>
-                                <li>Managing arrival shipments</li>
-                                <li>Operating cash register</li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-2 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/maistra1.svg" alt="Company logo" width="70">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>Hotel receptionist</b></h4>
-                            <h5><i>2018-2021, seasonal internship</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>Client relations</li>
-                                <li>Learned how to work with Amadeus</li>
-                                <li>Learned how to create PNRs</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="my-3 biography-section">
-                <h2>Education</h2>
-                <ul class="biography-list list-unstyled">
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/schools/logo-buas.svg" alt="School logo" width="120">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>BA in Creative Business, Breda University of Applied Sciences</b></h4>
-                            <h5><i>2022&nbsp;&ndash;&nbsp;now</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>Project manager for BUas 6-minute-journal</li>
-                                <li>Experience as a short documentary producer</li>
-                                <li>Collaboration with Flagstaff University</li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/schools/rckdu.png" alt="School logo" width="80">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>High School Diploma, Tourism and hospitality school Dubrovnik</b></h4>
-                            <h5><i>2018&dash;2022</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>Hotel technician specialization</li>
-                                <li>Skills in tourism marketing</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-        </main>
-
-        <aside class="col-md-5 col-lg-4 col-xl-3 resume-aside">
-            <section class="my-3 aside-section">
-                <h2>Languages</h2>
-                <ul class="language-list list-unstyled">
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">Croatian</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-100"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">Native</h6>
-                        </div>
-                    </li>
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">English</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-75"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">C1</h6>
-                        </div>
-                    </li>
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">Spanish</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-50"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">B1</h6>
-                        </div>
-                    </li>
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">Italian</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-25"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">A1</h6>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="my-3 aside-section">
-                <h2>Other Skills</h2>
-                <ul class="skill-list list-unstyled">
-                    <li class="skill-item">Skilled in Trello and Microsoft Office</li>
-                    <li class="skill-item">Friendly with the Adobe Suite</li>
-                    <li class="skill-item">Quick on my feet</li>
-                </ul>
-            </section>
-
-            <section class="my-3 aside-section">
-                <h2>Interests &amp; Hobbies</h2>
-                <ul class="skill-list list-unstyled">
-                    <li class="skill-item">Obsessed with sports</li>
-                    <li class="skill-item">Music in my vains</li>
-                </ul>
-            </section>
-        </aside>
+    <div class="hero-name-block">
+      <div class="hero-eyebrow">Community Manager &amp; Creative Professional</div>
+      <h1 class="hero-name">Karla<br><span class="stroke">Šantić</span></h1>
     </div>
 
-    <footer class="bg-light mt-sm-5 py-4 text-light" id="footer">
-        <p class="container text-end">
-            Created as part of the <a href="https://www.buas.nl/en/programmes/creative-business" target="_blank">Bachelor of Creative Business at Breda University of Applied Sciences.</a>
-        </p>
-    </footer>
+    <div class="hero-left">
+      <p class="hero-tagline">Building communities, crafting strategies, and creating experiences that connect with real people.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">Community Management</span>
+        <span class="hero-tag">Social Media Strategy</span>
+        <span class="hero-tag">Event Management</span>
+        <span class="hero-tag">Marketing Strategy</span>
+        <span class="hero-tag">Production</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div>
+        <div class="hero-status"><div class="status-dot"></div>Available for work</div>
+        <div class="hero-location">Vienna, AT — <span id="clock"></span></div>
+      </div>
+      <div class="hero-scroll-hint">Scroll down</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="section-bar">
+    <span class="section-bar-label">About</span>
+    <span class="section-bar-line"></span>
+    <span class="section-bar-num">01</span>
+  </div>
+  <section id="about">
+    <div class="about-main">
+      <h2 class="section-title">More<br>About Me</h2>
+      <p class="about-text">I'm <strong>Karla</strong>, a creative from Croatia now based in Vienna. I thrive at the intersection of community, strategy, and storytelling — building brands and communities that <strong>actually mean something</strong> to people.</p>
+      <p class="about-text">On the edge of creativity and strategy, I use both to design moments that resonate — whether that's a live event, a social campaign, or a community that keeps people coming back.</p>
+      <a href="mailto:karla.santic@gmail.com" class="about-cta">Download resume</a>
+    </div>
+    <div class="about-sidebar">
+      <div class="about-stat"><div class="stat-num">4+</div><div class="stat-label">Years experience</div></div>
+      <div class="about-stat"><div class="stat-num">6</div><div class="stat-label">Projects delivered</div></div>
+      <div class="about-stat"><div class="stat-num">3</div><div class="stat-label">Industries covered</div></div>
+      <div class="about-stat"><div class="stat-num">∞</div><div class="stat-label">Ideas in progress</div></div>
+      <blockquote class="about-quote">"I believe in creating experiences that resonate deeply with people — not just things that look good, but things that leave a mark."</blockquote>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <div class="section-bar">
+    <span class="section-bar-label">Skills</span>
+    <span class="section-bar-line"></span>
+    <span class="section-bar-num">02</span>
+  </div>
+  <section id="skills">
+    <div class="skills-header"><h2 class="section-title">My<br>Skillset</h2></div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-color-swatch"></div><div class="skill-name">Community Management</div><p class="skill-desc">Managing global artist communities, listening to users, and translating real feedback into meaningful insights. Building spaces where people genuinely want to be.</p></div>
+      <div class="skill-card"><div class="skill-color-swatch"></div><div class="skill-name">Social Media &amp; Content Strategy</div><p class="skill-desc">Creating strategies that speak to real audiences — not just look good, but actually connect. Tone, timing, and what people really want to see.</p></div>
+      <div class="skill-card"><div class="skill-color-swatch"></div><div class="skill-name">Marketing Strategy</div><p class="skill-desc">Thinking about audiences — not just designing for them, but communicating to them. Connecting creative decisions back to broader strategic goals.</p></div>
+      <div class="skill-card"><div class="skill-color-swatch"></div><div class="skill-name">Event Management</div><p class="skill-desc">Producing and managing live events from concept through execution. Thriving in high-pressure, fast-paced environments where no two days look the same.</p></div>
+      <div class="skill-card"><div class="skill-color-swatch"></div><div class="skill-name">Production</div><p class="skill-desc">From live TV production to digital media — working behind the scenes to bring creative visions to life on screen and on stage.</p></div>
+      <div class="skill-card"><div class="skill-color-swatch"></div><div class="skill-name">Cross-functional Collaboration</div><p class="skill-desc">Working alongside developers, creatives, strategists, and producers. Adapting communication style to whoever is in the room.</p></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <div class="section-bar">
+    <span class="section-bar-label">Work</span>
+    <span class="section-bar-line"></span>
+    <span class="section-bar-num">03</span>
+  </div>
+  <section id="work">
+    <div class="work-header"><h2 class="section-title">Selected<br>Projects</h2></div>
+    <div class="projects-list">
+      <a href="https://karlasantic.framer.website/projects/buas-plus-lib-app" target="_blank" class="project-item">
+        <span class="project-num-cell">01</span><div class="project-info"><div class="project-title">BUAs+ Library App</div><div class="project-meta">Prototype · 2023–2024</div></div><span class="project-tag-cell">UX Design</span><span class="project-arrow-cell">→</span>
+      </a>
+      <a href="https://karlasantic.framer.website/projects/pijnstad-prototype" target="_blank" class="project-item">
+        <span class="project-num-cell">02</span><div class="project-info"><div class="project-title">Pijnstad</div><div class="project-meta">Prototype · 2023–2024</div></div><span class="project-tag-cell">Prototype</span><span class="project-arrow-cell">→</span>
+      </a>
+      <a href="https://karlasantic.framer.website/projects/westernized" target="_blank" class="project-item">
+        <span class="project-num-cell">03</span><div class="project-info"><div class="project-title">Westernized</div><div class="project-meta">Live TV Production · 2023–2024</div></div><span class="project-tag-cell">Production</span><span class="project-arrow-cell">→</span>
+      </a>
+      <a href="https://karlasantic.framer.website/projects/hailie" target="_blank" class="project-item">
+        <span class="project-num-cell">04</span><div class="project-info"><div class="project-title">Haile — Hologram AI Assistant</div><div class="project-meta">Prototype · 2022–2025</div></div><span class="project-tag-cell">Concept</span><span class="project-arrow-cell">→</span>
+      </a>
+      <a href="https://karlasantic.framer.website/projects/destress-brandbook" target="_blank" class="project-item">
+        <span class="project-num-cell">05</span><div class="project-info"><div class="project-title">Destress Fest</div><div class="project-meta">Branding · 2023–2025</div></div><span class="project-tag-cell">Branding</span><span class="project-arrow-cell">→</span>
+      </a>
+      <a href="https://karlasantic.framer.website/projects/bestofbuas" target="_blank" class="project-item">
+        <span class="project-num-cell">06</span><div class="project-info"><div class="project-title">Best of BUas</div><div class="project-meta">Event Organisation · 2022–2024</div></div><span class="project-tag-cell">Events</span><span class="project-arrow-cell">→</span>
+      </a>
+      <div class="project-item" style="cursor:default;">
+        <span class="project-num-cell">07</span><div class="project-info"><div class="project-title">Artivive Learning Hub</div><div class="project-meta">Course Website &amp; Email Design System · Artivive</div></div><span class="project-tag-cell">Web · Email</span><span class="project-arrow-cell" style="opacity:0.2;">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <div class="section-bar">
+    <span class="section-bar-label">Experience</span>
+    <span class="section-bar-line"></span>
+    <span class="section-bar-num">04</span>
+  </div>
+  <section id="experience">
+    <div class="experience-header"><h2 class="section-title">Where I've<br>Worked</h2></div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-sidebar">
+          <div>
+            <span class="exp-type-badge parttime">Part-time</span>
+            <div class="exp-role">Community Manager</div>
+            <div class="exp-company">Artivive · Vienna, AT</div>
+          </div>
+          <div class="exp-date">[date] – [date]</div>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">
+            <li>Managed ongoing community engagement and support for Artivive's global artist base</li>
+            <li>Owned ActiveCampaign campaigns end-to-end — from setup and automation to reporting</li>
+            <li>Rebuilt the Artivive Learning Hub from a single-file prototype into a maintainable multi-page static site with shared CSS/JS, cross-page navigation, and browser-persisted progress tracking</li>
+            <li>Developed responsive, dark-mode-ready, Outlook-safe HTML emails including a transactional message, a rebuilt newsletter, and a reusable automation template</li>
+            <li>Established a visual design system — typography, colour tokens, and components — applied consistently across the course site and marketing emails</li>
+            <li>Maintained and updated website content on a regular basis</li>
+            <li>Developed and executed social media and content strategies</li>
+            <li>Collaborated cross-functionally with creatives, developers, and strategists</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Community Management</span>
+            <span class="exp-tag">ActiveCampaign</span>
+            <span class="exp-tag">HTML Email</span>
+            <span class="exp-tag">Design Systems</span>
+            <span class="exp-tag">Social Media</span>
+            <span class="exp-tag">Web Content</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-sidebar">
+          <div>
+            <span class="exp-type-badge internship">Internship</span>
+            <div class="exp-role">Community Manager Intern</div>
+            <div class="exp-company">Artivive · Vienna, AT</div>
+          </div>
+          <div class="exp-date">[date] – [date]</div>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">
+            <li>Provided day-to-day support to a global artist community as a support specialist</li>
+            <li>Managed email marketing workflows and automations using ActiveCampaign</li>
+            <li>Assisted with website updates and content maintenance</li>
+            <li>Created and scheduled content across social media channels</li>
+            <li>Translated user feedback into actionable insights to improve the community experience</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Community Support</span>
+            <span class="exp-tag">ActiveCampaign</span>
+            <span class="exp-tag">Content Creation</span>
+            <span class="exp-tag">Social Media</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <div class="section-bar">
+    <span class="section-bar-label">Education</span>
+    <span class="section-bar-line"></span>
+    <span class="section-bar-num">05</span>
+  </div>
+  <section id="education">
+    <div class="education-header">
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-cell">
+          <div class="edu-year">2022 – 2026</div>
+          <div class="edu-title">Creative Business — Bachelor of Arts</div>
+          <div class="edu-school">Breda University of Applied Sciences</div>
+          <p class="edu-desc">Hands-on experience across media production — from magazine and UX/UI design to live TV show production — while learning to deliver innovative, high-quality work under pressure.</p>
+        </div>
+        <div class="edu-cell">
+          <div class="edu-year">2018 – 2022</div>
+          <div class="edu-title">Tourism &amp; Hospitality Technician</div>
+          <div class="edu-school">Dubrovnik School of Tourism &amp; Hospitality</div>
+          <p class="edu-desc">Skills in business psychology, accounting, hospitality, and tourism marketing, with a focus on customer service and sustainable practices.</p>
+        </div>
+        <div class="edu-cell">
+          <div class="edu-year">2012 – 2020</div>
+          <div class="edu-title">Classical Musician</div>
+          <div class="edu-school">Luka Sorkočević Art School, Dubrovnik</div>
+          <p class="edu-desc">Musical development through creative expression, enhancing artistic abilities, critical thinking, and a deepened approach to creativity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="section-bar">
+    <span class="section-bar-label">Contact</span>
+    <span class="section-bar-line"></span>
+    <span class="section-bar-num">06</span>
+  </div>
+  <section id="contact">
+    <div class="contact-shape-a"></div>
+    <div class="contact-shape-b"></div>
+    <div class="contact-shape-c"></div>
+    <div class="contact-left">
+      <p class="contact-pre">Open to opportunities</p>
+      <h2 class="contact-title">Let's<br>Work<br>Together</h2>
+    </div>
+    <div class="contact-right">
+      <a href="mailto:karla.santic@gmail.com" class="contact-link primary"><span>karla.santic@gmail.com</span><span>✉</span></a>
+      <a href="https://www.linkedin.com/in/karla-santic/" target="_blank" class="contact-link"><span>LinkedIn</span><span>→</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">KŠ<em>.</em></div>
+    <div class="footer-copy">© 2025 Karla Šantić. All rights reserved.</div>
+  </footer>
+
+  <script>
+    function tick() {
+      const n = new Date(), p = v => String(v).padStart(2,'0');
+      const el = document.getElementById('clock');
+      if (el) el.textContent = p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
+    }
+    tick(); setInterval(tick, 1000);
+  </script>
 </body>
+</html>
