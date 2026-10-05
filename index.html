@@ -1,196 +1,1152 @@
 <!DOCTYPE html>
-<html class="h-100" lang="en">
-
+<html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Karla Šantić's resume</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8e0d2">
+  <title>Karla Šantić</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Archivo:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────── */
+    :root {
+      --parchment:   #e8e0d2;
+      --parchment-d: #ddd4c2;
+      --ink:         #16120e;
+      --ink-2:       #3a342c;
+      --ink-3:       #7a6f62;
+      --ink-4:       #a89f93;
+      --rule:        rgba(22,18,14,0.14);
+      --rule-heavy:  rgba(22,18,14,0.35);
+      --accent:      #b5340a;   /* one spare red for status / emphasis only */
+      --white:       #f9f5ef;
+    }
+
+    /* ── RESET ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--parchment);
+      color: var(--ink);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN ───────────────────────────────────────────── */
+    .sc-grain {
+      position: fixed;
+      inset: -200%;
+      width: 400%; height: 400%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.038;
+      pointer-events: none;
+      z-index: 9000;
+      animation: grain-drift 7s steps(2) infinite;
+    }
+    @keyframes grain-drift {
+      0%   { transform: translate(0,0); }
+      10%  { transform: translate(-3%,-4%); }
+      30%  { transform: translate(2%, 5%); }
+      50%  { transform: translate(-4%, 1%); }
+      70%  { transform: translate(3%,-3%); }
+      90%  { transform: translate(-2%, 4%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ── PROGRESS BAR ────────────────────────────────────── */
+    .sc-progress {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--ink);
+      transform-origin: left;
+      transform: scaleX(0);
+      z-index: 9100;
+      transition: transform 0.1s linear;
+    }
+
+    /* ── MASTHEAD / NAV ──────────────────────────────────── */
+    .site-masthead {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      height: 52px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      padding: 0 40px;
+      border-bottom: 1px solid var(--rule-heavy);
+      background: rgba(232,224,210,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .site-masthead-brand {
+      font-family: 'Archivo', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .site-masthead-brand em { color: var(--accent); font-style: normal; }
+
+    .site-masthead-nav {
+      display: flex;
+      gap: 0;
+      margin-right: 28px;
+    }
+    .site-masthead-nav a {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      text-decoration: none;
+      padding: 0 18px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      border-left: 1px solid var(--rule);
+      transition: color 0.15s, background 0.15s;
+    }
+    .site-masthead-nav a:hover { color: var(--ink); background: rgba(22,18,14,0.04); }
+
+    .site-masthead-cta {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 10px 22px;
+      transition: background 0.15s;
+    }
+    .site-masthead-cta:hover { background: var(--accent); }
+
+    /* ── FOLIO LABEL (chapter number) ────────────────────── */
+    .folio {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+    }
+
+    /* ── CHAPTER HEADING ─────────────────────────────────── */
+    .chapter-heading {
+      margin-bottom: 56px;
+    }
+    .chapter-heading p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 10px;
+    }
+    .chapter-heading h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    /* ── SECTIONS — shared ───────────────────────────────── */
+    .editorial-act {
+      padding: 100px 40px;
+      border-top: 1px solid var(--rule-heavy);
+    }
+    .editorial-act:first-of-type { border-top: none; }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #cover {
+      padding-top: calc(52px + 80px);
+      padding-bottom: 80px;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+    }
+
+    .cover-copy {}
+
+    .cover-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cover-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--ink-3);
+    }
+
+    .cover-headline {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(64px, 11vw, 160px);
+      font-weight: 900;
+      line-height: 0.87;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 48px;
+    }
+    .cover-headline em {
+      font-style: italic;
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 0.85em;
+      letter-spacing: -0.01em;
+      display: block;
+    }
+
+    .cover-statement {
+      max-width: 44ch;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink-2);
+      margin-bottom: 40px;
+    }
+
+    .cover-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .cover-primary {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 14px 28px;
+      transition: background 0.15s;
+    }
+    .cover-primary:hover { background: var(--accent); }
+    .cover-secondary {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: transparent;
+      text-decoration: none;
+      padding: 14px 28px;
+      border: 1px solid var(--rule-heavy);
+      transition: background 0.15s;
+    }
+    .cover-secondary:hover { background: rgba(22,18,14,0.06); }
+
+    /* right panel */
+    .cover-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 32px;
+    }
+    .cover-tags {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .cover-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      border: 1px solid var(--rule);
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.25);
+    }
+    .cover-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.2; } }
+
+    /* cover footer strip */
+    .cover-strip {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-top: 1px solid var(--rule-heavy);
+      margin-top: 64px;
+      padding-top: 20px;
+    }
+    .cover-strip-item {
+      flex: 1;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      padding-right: 24px;
+    }
+    .cover-strip-item + .cover-strip-item {
+      padding-left: 24px;
+      border-left: 1px solid var(--rule);
+    }
+    .cover-strip-item strong { display: block; color: var(--ink); margin-bottom: 2px; }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about-section {
+      display: grid;
+      grid-template-columns: 5fr 3fr;
+      gap: 80px;
+    }
+    .about-body {}
+    .about-text {
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--ink-2);
+      margin-bottom: 20px;
+      max-width: 56ch;
+    }
+    .about-text strong { color: var(--ink); font-weight: 600; }
+
+    .about-cta {
+      display: inline-block;
+      margin-top: 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 13px 26px;
+      transition: background 0.15s;
+    }
+    .about-cta:hover { background: var(--accent); }
+
+    .about-aside {
+      border-left: 1px solid var(--rule-heavy);
+      padding-left: 48px;
+    }
+    .about-stat { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+    .about-stat:first-child { padding-top: 0; }
+    .about-stat:last-child { border-bottom: none; }
+    .stat-num {
+      font-family: 'Archivo', sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .about-quote {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--ink-2);
+    }
+
+    /* ── SKILLS ──────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule-heavy);
+      margin-top: 56px;
+    }
+    .skill-card {
+      padding: 36px 32px;
+      border-right: 1px solid var(--rule-heavy);
+      border-bottom: 1px solid var(--rule-heavy);
+      transition: background 0.15s;
+    }
+    .skill-card:nth-child(3n) { border-right: none; }
+    .skill-card:nth-last-child(-n+3) { border-bottom: none; }
+    .skill-card:hover { background: rgba(255,255,255,0.4); }
+
+    .skill-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--ink-4);
+      margin-bottom: 16px;
+    }
+    .skill-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .skill-desc {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--ink-3);
+    }
+
+    /* ── WORK ────────────────────────────────────────────── */
+    .projects-index {
+      margin-top: 56px;
+      border-top: 1px solid var(--rule-heavy);
+      border-bottom: 1px solid var(--rule-heavy);
+    }
+    .project-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto auto;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.12s;
+      cursor: pointer;
+    }
+    .project-row:last-child { border-bottom: none; }
+    .project-row:hover { background: rgba(255,255,255,0.45); }
+
+    .project-index-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--ink-4);
+      padding: 26px 0 26px 0;
+      border-right: 1px solid var(--rule);
+      text-align: center;
+    }
+    .project-body { padding: 26px 32px; }
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .project-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+    }
+    .project-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      padding: 0 28px;
+      border-left: 1px solid var(--rule);
+      white-space: nowrap;
+    }
+    .project-arrow {
+      padding: 0 28px 0 12px;
+      font-size: 16px;
+      color: var(--ink-4);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .project-row:hover .project-arrow { transform: translateX(4px); color: var(--ink); }
+
+    /* ── EXPERIENCE ──────────────────────────────────────── */
+    .exp-list { margin-top: 56px; }
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-top: 1px solid var(--rule-heavy);
+      padding: 40px 0;
+    }
+    .exp-entry:last-child { border-bottom: 1px solid var(--rule-heavy); }
+
+    .exp-meta {}
+    .exp-badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      margin-bottom: 14px;
+    }
+    .exp-badge.internship { color: var(--ink); border: 1px solid var(--rule-heavy); }
+    .exp-badge.parttime   { color: var(--accent); border: 1px solid var(--accent); }
+
+    .exp-role-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .exp-org {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+    }
+    .exp-date-str {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink-4);
+      letter-spacing: 0.06em;
+    }
+
+    .exp-content { padding-left: 48px; border-left: 1px solid var(--rule); }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink-2);
+      padding-left: 18px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 10px;
+      width: 7px; height: 1px;
+      background: var(--ink-3);
+    }
+    .exp-skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+    }
+    .exp-skill-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      border: 1px solid var(--rule);
+      padding: 4px 10px;
+    }
+
+    /* ── EDUCATION ───────────────────────────────────────── */
+    .edu-list {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule-heavy);
+    }
+    .edu-card {
+      padding: 36px 32px;
+      border-right: 1px solid var(--rule-heavy);
+      transition: background 0.15s;
+    }
+    .edu-card:last-child { border-right: none; }
+    .edu-card:hover { background: rgba(255,255,255,0.4); }
+    .edu-year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 12px;
+    }
+    .edu-degree {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .edu-school {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 16px;
+    }
+    .edu-desc { font-size: 13px; line-height: 1.75; color: var(--ink-3); }
+
+    /* ── SOURCES / CONTACT ───────────────────────────────── */
+    .source-index {
+      margin-top: 48px;
+      border-top: 1px solid var(--rule-heavy);
+      border-bottom: 1px solid var(--rule-heavy);
+    }
+    .source-index a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.12s;
+      gap: 24px;
+    }
+    .source-index a:last-child { border-bottom: none; }
+    .source-index a:hover { background: rgba(255,255,255,0.4); padding-left: 12px; }
+    .source-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      min-width: 180px;
+    }
+    .source-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      flex: 1;
+    }
+    .source-arrow {
+      font-size: 16px;
+      color: var(--ink-4);
+      transition: transform 0.2s;
+    }
+    .source-index a:hover .source-arrow { transform: translate(3px,-3px); color: var(--ink); }
+
+    /* ── COLOPHON ────────────────────────────────────────── */
+    #colophon {
+      text-align: center;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    .colophon-mark {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(48px, 9vw, 120px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 48px;
+    }
+    .colophon-mark em {
+      font-style: italic;
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .colophon-copy {
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .colophon-copy p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink-2);
+      margin-bottom: 12px;
+    }
+    .colophon-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .seo-footer {
+      background: var(--ink);
+      color: var(--parchment-d);
+      border-top: 1px solid rgba(232,224,210,0.12);
+    }
+    .seo-footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding: 56px 40px 48px;
+      border-bottom: 1px solid rgba(232,224,210,0.1);
+    }
+    .seo-brand {
+      font-family: 'Archivo', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .seo-brand em { color: var(--accent); font-style: normal; }
+    .seo-footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-4);
+      max-width: 32ch;
+    }
+    .seo-footer h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 16px;
+    }
+    .seo-footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .seo-footer ul a {
+      font-size: 13px;
+      color: rgba(232,224,210,0.65);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .seo-footer ul a:hover { color: var(--parchment); }
+    .seo-footer-base {
+      padding: 18px 40px;
+    }
+    .seo-footer-base-inner {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink-4);
+    }
+
+    /* ── MOBILE ──────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .site-masthead { padding: 0 20px; }
+      .site-masthead-nav { display: none; }
+      .editorial-act { padding: 64px 20px; }
+      .cover-main { grid-template-columns: 1fr; gap: 40px; }
+      .cover-right { align-items: flex-start; }
+      #about-section { grid-template-columns: 1fr; gap: 0; }
+      .about-aside { border-left: none; border-top: 1px solid var(--rule-heavy); padding-left: 0; padding-top: 36px; margin-top: 36px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-card { border-right: none !important; }
+      .project-type, .project-arrow { display: none; }
+      .project-index-num { padding-left: 0; }
+      .exp-entry { grid-template-columns: 1fr; gap: 20px; }
+      .exp-content { padding-left: 0; border-left: none; border-top: 1px solid var(--rule); padding-top: 20px; }
+      .edu-list { grid-template-columns: 1fr; }
+      .edu-card { border-right: none !important; border-bottom: 1px solid var(--rule-heavy); }
+      .edu-card:last-child { border-bottom: none; }
+      .source-label { display: none; }
+      .colophon-mark { font-size: clamp(40px,14vw,80px); }
+      .seo-footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; padding: 40px 20px; }
+      .seo-footer-base { padding: 16px 20px; }
+    }
+  </style>
 </head>
+<body>
 
-<body fluid="d-flex flex-column h-1000 justify-content-between">
+  <!-- grain + progress -->
+  <div class="sc-grain" aria-hidden="true"></div>
+  <div class="sc-progress" id="sc-progress" aria-hidden="true"></div>
 
-    <header id="header" class="fixed-top">
-       
-    </header>
+  <!-- MASTHEAD -->
+  <header class="site-masthead">
+    <a class="site-masthead-brand" href="#cover">KARLA <em>ŠANTIĆ</em></a>
+    <nav class="site-masthead-nav" aria-label="Primary navigation">
+      <a href="#about-section">About</a>
+      <a href="#skills-section">Skills</a>
+      <a href="#work-section">Work</a>
+      <a href="#experience-section">Experience</a>
+      <a href="#education-section">Education</a>
+    </nav>
+    <a class="site-masthead-cta" href="#contact-section">Open the file</a>
+  </header>
 
-        
-    <div id="karla" class="home">
-        <div class="container">
-            <div class="karla-content">
-              <h1>I'm <span class="animated-text" id="typingAnimation" data-typed-items="Karla Šantić"></span></h1>
-              <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-          <script>
-            var options = {
-                strings: ['Karla Šantić'],
-                typeSpeed: 95,
-                startDelay: 900,
-                untilcompleted: true 
-             };
+  <main id="top">
 
-            var typed = new Typed('#typingAnimation', options);
-          </script>
-              <h2>Creative business professional</h2>
-                <ul class="list-unstyled list-social">
-                    <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-                </ul>
-                <div id="social-media" class="div-block-8">
-                    <a href="https://www.linkedin.com/in/karla-santic/" target="_blank" class="social-links w-inline-block">
-                        <img src='images/icons/linkedin.svg' width="36" alt="" class="image-2"/>
-                    </a>
-                    <a href="mailto:221443@buas.nl" class="social-links w-inline-block">
-                        <img  src="images/icons/envelope.svg" width="48"  height="45" alt="Email" class="image-2">
-                    </a>
-                    <a href="https://github.com/karlasantic/" class="social-links w-inline-block">
-                        <img  src="images/icons/github.svg" width="37" alt="GitHub" class="image-2">
-                    </a>
-                    
-                </div>
-            </div>
+    <!-- COVER -->
+    <section id="cover" class="editorial-act">
+      <div class="cover-main">
+        <div class="cover-copy">
+          <p class="cover-eyebrow">Community Manager &amp; Creative Professional</p>
+          <h1 class="cover-headline">
+            Karla<br>
+            <em>Šantić.</em>
+          </h1>
+          <p class="cover-statement">Building communities, crafting strategies, and creating experiences that connect with real people. Based in Vienna — working across community management, social media, events, and production.</p>
+          <div class="cover-actions">
+            <a class="cover-primary" href="#work-section">See the work</a>
+            <a class="cover-secondary" href="#contact-section">Get in touch</a>
+          </div>
         </div>
+        <div class="cover-right">
+          <div class="cover-status">
+            <div class="status-dot"></div>
+            Available for work
+          </div>
+          <div class="cover-tags">
+            <span class="cover-tag">Community Management</span>
+            <span class="cover-tag">Social Media Strategy</span>
+            <span class="cover-tag">Event Management</span>
+            <span class="cover-tag">Marketing Strategy</span>
+            <span class="cover-tag">Production</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-strip">
+        <div class="cover-strip-item"><strong>4+ Years</strong>Professional experience</div>
+        <div class="cover-strip-item"><strong>Vienna, AT</strong>Open to remote &amp; relocation</div>
+        <div class="cover-strip-item"><strong>6 Projects</strong>Delivered across 3 industries</div>
+        <div class="cover-strip-item"><strong id="clock-strip">—:—:—</strong>Local time</div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about-section" class="editorial-act">
+      <div class="chapter-heading">
+        <p data-folio="01">About</p>
+        <h2>Creative at the edge of strategy.</h2>
+      </div>
+      <div id="about-body" style="display:grid;grid-template-columns:5fr 3fr;gap:80px;">
+        <div>
+          <p class="about-text">I'm <strong>Karla</strong>, a creative from Croatia now based in Vienna. I thrive at the intersection of community, strategy, and storytelling — building brands and communities that <strong>actually mean something</strong> to people.</p>
+          <p class="about-text">On the edge of creativity and strategy, I use both to design moments that resonate — whether that's a live event, a social campaign, or a community that keeps people coming back.</p>
+          <p class="about-text">I've worked across production, digital, and live environments — always in fast-moving, high-expectation contexts where the work has to land.</p>
+          <a class="about-cta" href="mailto:karla.santic@gmail.com">Download resume</a>
+        </div>
+        <div class="about-aside">
+          <div class="about-stat"><div class="stat-num">4+</div><div class="stat-label">Years experience</div></div>
+          <div class="about-stat"><div class="stat-num">6</div><div class="stat-label">Projects delivered</div></div>
+          <div class="about-stat"><div class="stat-num">3</div><div class="stat-label">Industries covered</div></div>
+          <div class="about-stat"><div class="stat-num">∞</div><div class="stat-label">Ideas in progress</div></div>
+          <blockquote class="about-quote">"I believe in creating experiences that leave a mark — not just things that look good, but things people remember."</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills-section" class="editorial-act">
+      <div class="chapter-heading">
+        <p data-folio="02">Skills</p>
+        <h2>What I bring to a room.</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-num">01</div>
+          <div class="skill-name">Community Management</div>
+          <p class="skill-desc">Managing global artist communities, listening to users, and translating real feedback into meaningful insights. Building spaces where people genuinely want to be.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">02</div>
+          <div class="skill-name">Social Media &amp; Content Strategy</div>
+          <p class="skill-desc">Creating strategies that speak to real audiences — not just look good, but actually connect. Tone, timing, and what people really want to see.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">03</div>
+          <div class="skill-name">Marketing Strategy</div>
+          <p class="skill-desc">Thinking about audiences — not just designing for them, but communicating to them. Connecting creative decisions back to broader strategic goals.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">04</div>
+          <div class="skill-name">Event Management</div>
+          <p class="skill-desc">Producing and managing live events from concept through execution. Thriving in high-pressure environments where no two days look the same.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">05</div>
+          <div class="skill-name">Production</div>
+          <p class="skill-desc">From live TV production to digital media — bringing creative visions to life on screen and on stage.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-num">06</div>
+          <div class="skill-name">Cross-functional Collaboration</div>
+          <p class="skill-desc">Working alongside developers, creatives, strategists, and producers. Adapting communication style to whoever is in the room.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work-section" class="editorial-act">
+      <div class="chapter-heading">
+        <p data-folio="03">Work</p>
+        <h2>Selected projects.</h2>
+      </div>
+      <div class="projects-index">
+        <a href="https://karlasantic.framer.website/projects/buas-plus-lib-app" target="_blank" class="project-row">
+          <span class="project-index-num">01</span>
+          <div class="project-body"><div class="project-name">BUAs+ Library App</div><div class="project-sub">Prototype · 2023–2024</div></div>
+          <span class="project-type">UX Design</span><span class="project-arrow">↗</span>
+        </a>
+        <a href="https://karlasantic.framer.website/projects/pijnstad-prototype" target="_blank" class="project-row">
+          <span class="project-index-num">02</span>
+          <div class="project-body"><div class="project-name">Pijnstad</div><div class="project-sub">Prototype · 2023–2024</div></div>
+          <span class="project-type">Prototype</span><span class="project-arrow">↗</span>
+        </a>
+        <a href="https://karlasantic.framer.website/projects/westernized" target="_blank" class="project-row">
+          <span class="project-index-num">03</span>
+          <div class="project-body"><div class="project-name">Westernized</div><div class="project-sub">Live TV Production · 2023–2024</div></div>
+          <span class="project-type">Production</span><span class="project-arrow">↗</span>
+        </a>
+        <a href="https://karlasantic.framer.website/projects/hailie" target="_blank" class="project-row">
+          <span class="project-index-num">04</span>
+          <div class="project-body"><div class="project-name">Haile — Hologram AI Assistant</div><div class="project-sub">Prototype · 2022–2025</div></div>
+          <span class="project-type">Concept</span><span class="project-arrow">↗</span>
+        </a>
+        <a href="https://karlasantic.framer.website/projects/destress-brandbook" target="_blank" class="project-row">
+          <span class="project-index-num">05</span>
+          <div class="project-body"><div class="project-name">Destress Fest</div><div class="project-sub">Branding · 2023–2025</div></div>
+          <span class="project-type">Branding</span><span class="project-arrow">↗</span>
+        </a>
+        <a href="https://karlasantic.framer.website/projects/bestofbuas" target="_blank" class="project-row">
+          <span class="project-index-num">06</span>
+          <div class="project-body"><div class="project-name">Best of BUas</div><div class="project-sub">Event Organisation · 2022–2024</div></div>
+          <span class="project-type">Events</span><span class="project-arrow">↗</span>
+        </a>
+        <div class="project-row" style="cursor:default;">
+          <span class="project-index-num">07</span>
+          <div class="project-body"><div class="project-name">Artivive Learning Hub</div><div class="project-sub">Course Website &amp; Email Design System · Artivive</div></div>
+          <span class="project-type">Web · Email</span><span class="project-arrow" style="opacity:0.2;">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience-section" class="editorial-act">
+      <div class="chapter-heading">
+        <p data-folio="04">Experience</p>
+        <h2>Where I've worked.</h2>
+      </div>
+      <div class="exp-list">
+
+        <div class="exp-entry">
+          <div class="exp-meta">
+            <span class="exp-badge parttime">Part-time</span>
+            <div class="exp-role-title">Community Manager</div>
+            <div class="exp-org">Artivive · Vienna, AT</div>
+            <div class="exp-date-str">[date] – [date]</div>
+          </div>
+          <div class="exp-content">
+            <ul class="exp-bullets">
+              <li>Managed ongoing community engagement and support for Artivive's global artist base</li>
+              <li>Owned ActiveCampaign campaigns end-to-end — from setup and automation to reporting</li>
+              <li>Rebuilt the Artivive Learning Hub from a single-file prototype into a maintainable multi-page static site with shared CSS/JS, cross-page navigation, and browser-persisted progress tracking</li>
+              <li>Developed responsive, dark-mode-ready, Outlook-safe HTML emails — transactional message, rebuilt newsletter, and a reusable automation template</li>
+              <li>Established a visual design system — typography, colour tokens, and components — applied consistently across the course site and marketing emails</li>
+              <li>Maintained website content and executed social media and content strategies</li>
+              <li>Collaborated cross-functionally with creatives, developers, and strategists</li>
+            </ul>
+            <div class="exp-skill-tags">
+              <span class="exp-skill-tag">Community Management</span>
+              <span class="exp-skill-tag">ActiveCampaign</span>
+              <span class="exp-skill-tag">HTML Email</span>
+              <span class="exp-skill-tag">Design Systems</span>
+              <span class="exp-skill-tag">Social Media</span>
+              <span class="exp-skill-tag">Web Content</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-entry">
+          <div class="exp-meta">
+            <span class="exp-badge internship">Internship</span>
+            <div class="exp-role-title">Community Manager Intern</div>
+            <div class="exp-org">Artivive · Vienna, AT</div>
+            <div class="exp-date-str">[date] – [date]</div>
+          </div>
+          <div class="exp-content">
+            <ul class="exp-bullets">
+              <li>Provided day-to-day support to a global artist community as a support specialist</li>
+              <li>Managed email marketing workflows and automations using ActiveCampaign</li>
+              <li>Assisted with website updates and content maintenance</li>
+              <li>Created and scheduled content across social media channels</li>
+              <li>Translated user feedback into actionable insights to improve the community experience</li>
+            </ul>
+            <div class="exp-skill-tags">
+              <span class="exp-skill-tag">Community Support</span>
+              <span class="exp-skill-tag">ActiveCampaign</span>
+              <span class="exp-skill-tag">Content Creation</span>
+              <span class="exp-skill-tag">Social Media</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education-section" class="editorial-act">
+      <div class="chapter-heading">
+        <p data-folio="05">Education</p>
+        <h2>The record.</h2>
+      </div>
+      <div class="edu-list">
+        <div class="edu-card">
+          <div class="edu-year">2022 – 2026</div>
+          <div class="edu-degree">Creative Business — BA</div>
+          <div class="edu-school">Breda University of Applied Sciences</div>
+          <p class="edu-desc">Hands-on experience across media production — from magazine and UX/UI design to live TV show production — delivering innovative work under pressure.</p>
+        </div>
+        <div class="edu-card">
+          <div class="edu-year">2018 – 2022</div>
+          <div class="edu-degree">Tourism &amp; Hospitality Technician</div>
+          <div class="edu-school">Dubrovnik School of Tourism &amp; Hospitality</div>
+          <p class="edu-desc">Business psychology, accounting, hospitality, and tourism marketing, with a focus on customer service and sustainable practices.</p>
+        </div>
+        <div class="edu-card">
+          <div class="edu-year">2012 – 2020</div>
+          <div class="edu-degree">Classical Musician</div>
+          <div class="edu-school">Luka Sorkočević Art School, Dubrovnik</div>
+          <p class="edu-desc">Musical development through creative expression — artistic abilities, critical thinking, and a deepened approach to creativity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact-section" class="editorial-act">
+      <div class="chapter-heading">
+        <p data-folio="06">Contact</p>
+        <h2>Open to the right opportunity.</h2>
+      </div>
+      <nav class="source-index" aria-label="Contact links">
+        <a href="mailto:karla.santic@gmail.com">
+          <span class="source-label">Email</span>
+          <span class="source-name">karla.santic@gmail.com</span>
+          <span class="source-arrow">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/karla-santic/" target="_blank" rel="noopener noreferrer">
+          <span class="source-label">LinkedIn</span>
+          <span class="source-name">Karla Šantić</span>
+          <span class="source-arrow">↗</span>
+        </a>
+        <a href="https://karlasantic.framer.website/" target="_blank" rel="noopener noreferrer">
+          <span class="source-label">Previous portfolio</span>
+          <span class="source-name">karlasantic.framer.website</span>
+          <span class="source-arrow">↗</span>
+        </a>
+      </nav>
+    </section>
+
+    <!-- COLOPHON -->
+    <section id="colophon" class="editorial-act">
+      <div class="colophon-mark">KARLA <em>ŠANTIĆ</em></div>
+      <div class="colophon-copy">
+        <p>Community manager, strategist, and creative producer based in Vienna. Open to full-time, part-time, and project-based roles.</p>
+        <p>Every project starts with listening. Every decision leads back to people.</p>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);margin-top:24px;">COMMUNITY. STRATEGY. PRODUCTION.</p>
+      </div>
+      <div class="colophon-actions">
+        <a class="cover-primary" href="mailto:karla.santic@gmail.com">Get in touch</a>
+        <a class="cover-secondary" href="#cover">Back to top</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="seo-footer">
+    <div class="seo-footer-inner">
+      <div class="seo-footer-brand">
+        <a class="seo-brand" href="#cover">KARLA <em>ŠANTIĆ</em></a>
+        <p>Community manager, strategist, and creative producer. Building communities and experiences that mean something.</p>
+      </div>
+      <div>
+        <h2>Work</h2>
+        <ul>
+          <li><a href="https://karlasantic.framer.website/projects/buas-plus-lib-app" target="_blank">BUAs+ Library App</a></li>
+          <li><a href="https://karlasantic.framer.website/projects/westernized" target="_blank">Westernized</a></li>
+          <li><a href="https://karlasantic.framer.website/projects/destress-brandbook" target="_blank">Destress Fest</a></li>
+          <li><a href="https://karlasantic.framer.website/projects/bestofbuas" target="_blank">Best of BUas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Connect</h2>
+        <ul>
+          <li><a href="mailto:karla.santic@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/karla-santic/" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="#about-section">About</a></li>
+          <li><a href="#skills-section">Skills</a></li>
+          <li><a href="#experience-section">Experience</a></li>
+          <li><a href="#education-section">Education</a></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="row resume-bottom">
-        <main class="col-md-10 col-lg-8 col-xl-9 resume-main">
-            <section class="my-3 biography-section">
-                <h2>Professional Experience</h2>
-                <ul class="biography-list list-unstyled">
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-2 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/projector.svg" alt="Company logo" width="70">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>Sales associate</b></h4>
-                            <h5><i>April&ndash;July 2022</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>B2C communication</li>
-                                <li>Managing arrival shipments</li>
-                                <li>Operating cash register</li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/employers/reshot-icon-hotel-WZEX8SU7H9.svg" alt="Company logo" width="0">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>Hotel receptionist</b></h4>
-                            <h5><i>2018-2021, seasonal internship</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>Client relations</li>
-                                <li>Learned how to work with Amadeus</li>
-                                <li>Learned how to create PNRs</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="my-3 biography-section">
-                <h2>Education</h2>
-                <ul class="biography-list list-unstyled">
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/schools/logo-buas.svg" alt="School logo" width="120">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>BA in Creative Business, Breda University of Applied Sciences</b></h4>
-                            <h5><i>2022&nbsp;&ndash;&nbsp;now</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>Project manager for BUas 6-minute-journal</li>
-                                <li>Experience as a short documentary producer</li>
-                                <li>Collaboration with Flagstaff University</li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="biography-item row mb-2">
-                        <div class="logo-container col-3 col-sm-2 col-md-3 col-lg-2">
-                            <img class="biography-logo mw-100 d-block mx-auto" src="images/schools/rckdu.png" alt="School logo" width="80">
-                        </div>
-                        <div class="biography-contents col-9 col-sm-10 col-md-9 col-lg-10">
-                            <h4><b>High School Diploma, Tourism and hospitality school Dubrovnik</b></h4>
-                            <h5><i>2018&dash;2022</i></h5>
-                            <ul class="biography-details list-unstyled">
-                                <li>Hotel technician specialization</li>
-                                <li>Skills in tourism marketing</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-        </main>
-
-        <aside class="col-md-5 col-lg-4 col-xl-3 resume-aside">
-            <section class="my-3 aside-section">
-            </section>
-
-            <section class="my-3 aside-section">
-                <h2>Languages</h2>
-                <ul class="language-list list-unstyled">
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">Croatian</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-100"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">Native</h6>
-                        </div>
-                    </li>
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">English</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-75"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">C1</h6>
-                        </div>
-                    </li>
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">Spanish</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-50"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">B1</h6>
-                        </div>
-                    </li>
-                    <li class="language-item d-flex mb-1">
-                        <h5 class="language-name w-50">Italian</h5>
-                        <div class="language-level w-50 border border-info border-2 position-relative">
-                            <div class="language-progress position-absolute bg-warning h-100 w-25"></div>
-                            <h6 class="position-absolute w-100 text-center top-0 py-1">A1</h6>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="my-3 aside-section">
-                <h2>Other Skills</h2>
-                <ul class="skill-list list-unstyled">
-                    <li class="skill-item">Team player</li>
-                    <li class="skill-item">Microsoft Office Power User</li>
-                    <li class="skill-item">Driving Licence</li>
-                </ul>
-            </section>
-
-            <section class="my-3 aside-section">
-                <h2>Interests &amp; Hobbies</h2>
-                <ul class="skill-list list-unstyled">
-                    <li class="skill-item">Sports enthusiast</li>
-                    <li class="skill-item">Film nerd</li>
-                </ul>
-            </section>
-        </aside>
+    <div class="seo-footer-base">
+      <div class="seo-footer-base-inner">© 2025 Karla Šantić · Vienna, AT · Community Manager &amp; Creative Professional</div>
     </div>
+  </footer>
 
-    <footer class="bg-light mt-sm-5 py-4 text-light" id="footer">
-        <p class="container text-end">
-            Created as part of the <a href="https://www.buas.nl/en/programmes/creative-business" target="_blank">Bachelor of Creative Business at Breda University of Applied Sciences.</a>
-        </p>
-    </footer>
-</div>
-<script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    // progress bar
+    const bar = document.getElementById('sc-progress');
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      bar.style.transform = `scaleX(${Math.min(pct,1)})`;
+    }, { passive: true });
+
+    // clock
+    function tick() {
+      const n = new Date(), p = v => String(v).padStart(2,'0');
+      const t = p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
+      const el = document.getElementById('clock-strip');
+      if (el) el.textContent = t;
+    }
+    tick(); setInterval(tick, 1000);
+  </script>
 </body>
-</body>
+</html>
